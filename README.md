@@ -18,3 +18,7 @@ A read-only AI Agent plugin built to diagnose broken Kubernetes namespaces, iden
 | :--- | :--- | :--- | :--- |
 | Scenario 1 | ImagePullBackOff (Bad Tag) | Correct Root Cause Identified | Passed |
 | Scenario 2 | Service Selector Mismatch | Identified endpoints empty state | Passed |
+
+## Agent Failure Analysis
+- **Hardest Failure Scenario:** NetworkPolicy / Service Selector Mismatches.
+- **Reason:** Standard log ingestion alone (`kubectl logs`) does not reveal network isolation or silent dropped packets. The agent relies heavily on explicit cross-resource evaluation defined in `SKILL.md` (comparing `Service` selectors with `Pod` labels).
