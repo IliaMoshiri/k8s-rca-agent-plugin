@@ -1,0 +1,19 @@
+# Kubernetes & Security sensitive files
+*.kubeconfig
+kubeconfig
+*.pem
+*.crt
+*.key
+.env
+*.env
+
+# Claude / Agent local runtime & session logs
+.claude/memory/
+.claude/history/
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
