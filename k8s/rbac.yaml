@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rca-agent-sa
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rca-agent-read-only
+  namespace: default
+rules:
+- apiGroups: ["", "apps", "batch"]
+  resources: ["pods", "pods/log", "events", "services", "endpoints", "deployments", "configmaps", "persistentvolumeclaims"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"] # Access keys only, not sensitive content
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rca-agent-read-only-binding
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: rca-agent-sa
+  namespace: default
+roleRef:
+  kind: Role
+  name: rca-agent-read-only
+  apiGroup: rbac.authorization.k8s.io
