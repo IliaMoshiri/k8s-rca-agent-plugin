@@ -12,3 +12,9 @@ A read-only AI Agent plugin built to diagnose broken Kubernetes namespaces, iden
 - `skills/`: Standard Operating Procedures (SOP) for diagnosis
 - `rules/`: Hard safety guidelines
 - `hooks/`: Pre/Post tool execution guards
+
+## Evaluation Results (Eval Scenarios)
+| Scenario | Injected Failure | Agent Verdict | Result |
+| :--- | :--- | :--- | :--- |
+| Scenario 1 | ImagePullBackOff (Bad Tag) | Correct Root Cause Identified | Passed |
+| Scenario 2 | Service Selector Mismatch | Identified endpoints empty state | Passed |
